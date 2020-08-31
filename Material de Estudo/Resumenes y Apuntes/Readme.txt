@@ -1,1 +1,0 @@
-Apuntes y resumenes propios y de años anteriores.
