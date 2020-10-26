@@ -1,0 +1,460 @@
+<div class="container pedido" *ngIf="!GotoDestino && !GotoMapa && !PasarFP">
+  <div class="containter">
+    <form [formGroup]="FormOrigen">
+      <fieldset>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <h3><label for="text">Que buscar:</label></h3>
+            <input type="text" class="form-control" placeholder="Que desea:" formControlName="QueOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.QueOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.QueOrigen.errors}" />
+            <span class="text-danger" *ngIf="(FormOrigen.controls.QueOrigen.touched || ListoOrigen || Mapa) 
+                          && FormOrigen.controls.QueOrigen.errors?.required">
+              Dato requerido.
+            </span>
+            <span class="text-danger"
+              *ngIf="(FormOrigen.controls.QueOrigen.touched || ListoOrigen) 
+                         && (FormOrigen.controls.QueOrigen.errors?.minlength || FormOrigen.controls.QueOrigen.errors?.maxlength) ">
+              Dato texto, 4 a 55 caracteres.
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <select class="form-control" name="ciudad" id="ciudad">
+                  <option disabled>----Ciudad----</option>
+                  <option>Córdoba</option>
+                  <option>Villa Allende</option>
+                  <option>Rio Ceballos</option>
+                </select>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Calle" formControlName="DirOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.DirOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.DirOrigen.errors}" />
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.DirOrigen.touched || ListoOrigen) 
+                          && FormOrigen.controls.DirOrigen.errors?.required">
+                    Dato requerido.
+                  </span>
+                  <span class="text-danger"
+                    *ngIf="(FormOrigen.controls.DirOrigen.touched || ListoOrigen) 
+                         && (FormOrigen.controls.DirOrigen.errors?.minlength || FormOrigen.controls.DirOrigen.errors?.maxlength) ">
+                    Dato texto, 4 a 55 caracteres.
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="text" placeholder="Nro" class="form-control" formControlName="NroOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.NroOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.NroOrigen.errors}" />
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.NroOrigen.touched || ListoOrigen) 
+                          && FormOrigen.controls.NroOrigen.errors?.required">
+                    Dato requerido.
+                  </span>
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.NroOrigen.touched || ListoOrigen) 
+                         &&   FormOrigen.controls.NroOrigen.errors?.pattern">
+                    Dato numérico, 1 a 7 dígitos.
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="text" placeholder="Piso" class="form-control" formControlName="PisoOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.PisoOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.PisoOrigen.errors}" />
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.PisoOrigen.touched || ListoOrigen) 
+                          && FormOrigen.controls.PisoOrigen.errors?.required">
+                    Dato requerido.
+                  </span>
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.PisoOrigen.touched || ListoOrigen) 
+                         &&   FormOrigen.controls.PisoOrigen.errors?.pattern">
+                    Dato numérico, 1 a 7 dígitos.
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input type="text" placeholder="Torre" class="form-control" formControlName="TorreOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.TorreOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.TorreOrigen.errors}" />
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.TorreOrigen.touched || ListoOrigen) 
+                          && FormOrigen.controls.TorreOrigen.errors?.required">
+                    Dato requerido.
+                  </span>
+                  <span class="text-danger" *ngIf="(FormOrigen.controls.TorreOrigen.touched || ListoOrigen) 
+                         &&   FormOrigen.controls.TorreOrigen.errors?.pattern">
+                    Dato numérico, 1 a 7 dígitos.
+                  </span>
+                </div>
+              </div>
+              <div class="form-group col-sm-12">
+                <input id="MontoOrigen" type="text" placeholder="Monto" class="form-control"
+                  formControlName="MontoOrigen" [ngClass]="{'is-invalid': (FormOrigen.controls.MontoOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.MontoOrigen.errors}" />
+                <span class="text-danger" *ngIf="(FormOrigen.controls.MontoOrigen.touched || ListoOrigen || Mapa) 
+                          && FormOrigen.controls.MontoOrigen.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormOrigen.controls.MontoOrigen.touched || ListoOrigen) 
+                         &&   FormOrigen.controls.MontoOrigen.errors?.pattern">
+                  Dato numérico, 1 a 7 dígitos.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-8">
+            <textarea class="form-control" rows="8" id="comment" placeholder="Referencias" formControlName="RefOrigen"
+              [ngClass]="{'is-invalid': (FormOrigen.controls.RefOrigen.touched || ListoOrigen)  
+              && FormOrigen.controls.RefOrigen.errors}"></textarea>
+            <span class="text-danger" *ngIf="(FormOrigen.controls.RefOrigen.touched || ListoOrigen) 
+                         && (FormOrigen.controls.RefOrigen.errors?.maxlength) ">
+              Hasta 255 caracteres.
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="row">
+      <div class="col-sm-12">
+        <h5>Mostranos una foto:</h5>
+        <input id="foto" type="file" accept=".jpg" class="form-control-file border" size="1">
+      </div>
+    </div>
+    <br>
+
+    <div>
+      <div class="row justify-content-center">
+
+        <button type="button" class="btn btn-warning col-sm-4" (click)="mapa()">
+          Seleccionar en el Mapa
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary col-sm-4" (click)="destino()">
+          Siguiente
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="container mapa" *ngIf="GotoMapa">
+  <h3>Seleccione un punto en el mapa</h3>
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat"
+      [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+    </agm-marker>
+
+    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true"
+      [editable]="true">
+    </agm-circle>
+
+  </agm-map>
+  <br>
+
+  <div class="row justify-content-center">
+
+    <button type="button" class="btn btn-warning col-sm-3" (click)="volverOrigenMapa()">
+      Anterior
+    </button>
+
+    <button type="button" class="btn btn-primary col-sm-3" (click)="destinoMapa()">
+      Siguiente
+    </button>
+
+  </div>
+</div>
+-->
+
+<div class="container destino" *ngIf="GotoDestino">
+  <div class="container">
+    <div class="Destino">
+      <h3><label for="text">A donde te lo llevamos:</label></h3>
+      <form [formGroup]="FormDestino">
+        <fieldset>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Calle" formControlName="DirDestino" [ngClass]="{'is-invalid': (FormDestino.controls.DirDestino.touched || ListoDestino)  
+              && FormDestino.controls.DirDestino.errors}" />
+                <span class="text-danger" *ngIf="(FormDestino.controls.DirDestino.touched || ListoDestino) 
+                          && FormDestino.controls.DirDestino.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger"
+                  *ngIf="(FormDestino.controls.DirDestino.touched || ListoDestino) 
+                         && (FormDestino.controls.DirDestino.errors?.minlength || FormDestino.controls.DirDestino.errors?.maxlength) ">
+                  Dato texto, 4 a 55 caracteres.
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <input type="text" placeholder="Nro" class="form-control" formControlName="NroDestino" [ngClass]="{'is-invalid': (FormDestino.controls.NroDestino.touched || ListoDestino)  
+              && FormDestino.controls.NroDestino.errors}" />
+                <span class="text-danger" *ngIf="(FormDestino.controls.NroDestino.touched || ListoDestino) 
+                          && FormDestino.controls.NroDestino.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormDestino.controls.NroDestino.touched || ListoDestino) 
+                         &&   FormDestino.controls.NroDestino.errors?.pattern">
+                  Dato numérico, 1 a 7 dígitos.
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <input type="text" placeholder="Piso" class="form-control" formControlName="PisoDestino" [ngClass]="{'is-invalid': (FormDestino.controls.PisoDestino.touched || ListoDestino)  
+              && FormDestino.controls.PisoDestino.errors}" />
+                <span class="text-danger" *ngIf="(FormDestino.controls.PisoDestino.touched || ListoDestino) 
+                          && FormDestino.controls.PisoDestino.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormDestino.controls.PisoDestino.touched || ListoDestino) 
+                         &&   FormDestino.controls.PisoDestino.errors?.pattern">
+                  Dato numérico, 1 a 7 dígitos.
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="form-group">
+                <input type="text" placeholder="Torre" class="form-control" formControlName="TorreDestino" [ngClass]="{'is-invalid': (FormDestino.controls.TorreDestino.touched || ListoDestino)  
+              && FormDestino.controls.TorreDestino.errors}" />
+                <span class="text-danger" *ngIf="(FormDestino.controls.TorreDestino.touched || ListoDestino) 
+                          && FormDestino.controls.TorreDestino.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormDestino.controls.TorreDestino.touched || ListoDestino) 
+                         &&   FormDestino.controls.TorreDestino.errors?.pattern">
+                  Dato numérico, 1 a 7 dígitos.
+                </span>
+
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+            </div>
+            <div class="form-group col-sm-12">
+              <label for="text">Referencias:</label>
+              <textarea class="form-control" rows="5" id="comment" placeholder="Referencias"
+                formControlName="RefDestino" [ngClass]="{'is-invalid': (FormDestino.controls.RefDestino.touched || ListoDestino)  
+              && FormDestino.controls.RefDestino.errors}"></textarea>
+              <span class="text-danger" *ngIf="(FormDestino.controls.RefDestino.touched || ListoDestino) 
+                         && (FormDestino.controls.RefDestino.errors?.maxlength) ">
+                Hasta 255 caracteres.
+              </span>
+
+
+            </div>
+
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <h3>Cuando lo quieres:</h3>
+              <br>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="optradio" (click)="deshabilitar()" checked>Lo antes
+                  posible.
+                </label>
+              </div>
+              <br>
+              <div>
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio" (click)="habilitar()">Yo te aviso:
+                  </label>
+                </div>
+                <div class="form-group col-sm-6" *ngIf="Calendar">
+                  <div class="form-group">
+                    <input type="date" id="day" name="day">
+                  </div>
+                  <select class="form-control" name="hh" id="hh">
+                    <option disabled>----HH----</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-6" *ngIf="Calendar">
+                  <select class="form-control" name="mm" id="mm">
+                    <option disabled>----MM----</option>
+                    <option>00</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+
+      <div class="row">
+
+      </div>
+      <div class="row justify-content-center">
+        <button type="button" class="btn btn-warning col-sm-3" (click)="volverOrigen()">
+          Anterior
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary col-sm-3" (click)="formaPago()">
+          Siguiente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pago" *ngIf="PasarFP">
+  <div class="container">
+    <h3 class="text-center">Selecciona tu forma de pago:</h3>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary col-sm-3" (click)="efectiv()">Efectivo</button>
+      &nbsp;
+      <button type="button" class="btn btn-secondary col-sm-3" (click)="td()">Tarjeta</button>
+    </div>
+    <hr>
+
+    <div class="efectivo" *ngIf="Efectivo">
+      <form name="FormEfectivo" [formGroup]='FormEfectivo'>
+        <fieldset>
+          <h4 class="text-center">Efectivo</h4>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="text">Con cuanto pagas:</label>
+                <input type="text" class="form-control" formControlName="Abonado" id="MontoAbonado" [ngClass]="{'is-invalid': (FormEfectivo.controls.Abonado.touched || Submitted)  
+              && FormEfectivo.controls.Abonado.errors}" />
+                <span class="text-danger" *ngIf="(FormEfectivo.controls.Abonado.touched || Submitted) 
+                          && FormEfectivo.controls.Abonado.errors?.required">
+                  Dato requerido.
+                </span>
+                <span class="text-danger" *ngIf="(FormEfectivo.controls.Abonado.touched || Submitted) 
+                 && FormEfectivo.controls.Abonado.errors?.pattern">
+                  Dato numérico, 1 a 7 dígitos.
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="tarjeta" *ngIf="Tarjeta">
+      <h4 class="text-center">Tarjeta</h4>
+      <form name="FormTarjeta" [formGroup]='FormTarjeta'>
+        <fieldset>
+          <div class="form-group">
+            <label for="text">Nombre y Apellido:</label>
+            <input type="text" class="form-control" placeholder="Nombre y Apellido" formControlName="Name" [ngClass]="{'is-invalid': (FormTarjeta.controls.Name.touched || Submitted)  
+              && FormTarjeta.controls.Name.errors}" />
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Name.touched || Submitted) 
+                          && FormTarjeta.controls.Name.errors?.required">
+              Dato requerido.
+            </span>
+            <span class="text-danger"
+              *ngIf="(FormTarjeta.controls.Name.touched || Submitted) 
+                         && (FormTarjeta.controls.Name.errors?.minlength || FormTarjeta.controls.Name.errors?.maxlength) ">
+              Dato texto, 4 a 55 caracteres.
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="text">Numero de Tarjeta:</label>
+            <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" class="form-control" formControlName="Nro" [ngClass]="{'is-invalid': (FormTarjeta.controls.Nro.touched || Submitted)  
+              && FormTarjeta.controls.Nro.errors}" />
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Nro.touched || Submitted) 
+                          && FormTarjeta.controls.Nro.errors?.required">
+              Dato requerido.
+            </span>
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Nro.touched || Submitted) 
+                         &&   FormTarjeta.controls.Nro.errors?.pattern">
+              Formato xxxx-xxxx-xxxx-xxxx, no olvides lo guiones. No aceptamos Masterd-Card.
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="text">Fecha de vencimiento:</label>
+            <input type="text" placeholder="xx-xxxx" class="form-control" id="fechaVenc" formControlName="Fecha"
+              [ngClass]="{'is-invalid': (FormTarjeta.controls.Fecha.touched || Submitted)  
+              && FormTarjeta.controls.Fecha.errors}" />
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Fecha.touched || Submitted) 
+                          && FormTarjeta.controls.Fecha.errors?.required">
+              Dato requerido.
+            </span>
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Fecha.touched || Submitted) 
+                         &&   FormTarjeta.controls.Fecha.errors?.pattern">
+              Formato xx-xxxx, no olvides lo guiones.
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="text">CRC:</label>
+            <input type="text" placeholder="CRC" class="form-control" formControlName="Crc" [ngClass]="{'is-invalid': (FormTarjeta.controls.Crc.touched || Submitted)  
+              && FormTarjeta.controls.Crc.errors}" />
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Crc.touched || Submitted) 
+                          && FormTarjeta.controls.Crc.errors?.required">
+              Dato requerido.
+            </span>
+            <span class="text-danger" *ngIf="(FormTarjeta.controls.Crc.touched || Submitted) 
+                         &&   FormTarjeta.controls.Crc.errors?.pattern">
+              Formato xxx, sólo numeros.
+            </span>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-warning col-sm-3" (click)="volverDestino()">
+        Anterior
+      </button>
+      &nbsp;
+      <button type="button" class="btn btn-primary col-sm-3" (click)="submit()" data-toggle="modal"
+        data-target="#confirmarModal">Confirmar Pedido</button>
+    </div>
+    <!-- Modal -->
+    <div *ngIf="Subido" class="modal fade" id="confirmarModal" tabindex="-1" role="dialog"
+      aria-labelledby="confirmarModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tu pedido está en camino!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" [routerLink]="['/inicio']"
+              routerLinkActive="router-link-active">Okey!!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
