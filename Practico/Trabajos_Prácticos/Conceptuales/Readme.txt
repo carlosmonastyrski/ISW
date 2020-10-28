@@ -1,1 +1,0 @@
-Trabajos practicos conceptuales
